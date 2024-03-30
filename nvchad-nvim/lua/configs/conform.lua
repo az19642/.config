@@ -1,13 +1,14 @@
-local options = {
-	notify_on_error = false,
-	format_on_save = {
-		lsp_fallback = false,
-	},
-	formatters_by_ft = {
-		lua = { "stylua" },
-		c = { "clang_format" },
-		cpp = { "clang_format" },
-	},
+local opts = {
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_fallback = false,
+    },
+    lsp_fallback = false,
+    formatters_by_ft = {
+      lua = { "stylua" },
+      c = { "clang_format" },
+      cpp = { "clang_format" },
+    },
 }
 
-require("conform").setup(options)
+return opts
