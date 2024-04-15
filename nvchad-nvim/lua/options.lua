@@ -1,24 +1,25 @@
 require("nvchad.options")
 
--- add yours here!
+local opt = vim.opt
+local o = vim.o
+local g = vim.g
 
 -- whether or not to convert tabs to spaces (that did not come within the file)
-vim.o.expandtab = true
+o.expandtab = true
 
 -- how many spaces a tab character will be worth in the editor
-vim.o.tabstop = 8
+o.tabstop = 2
 
 -- how many spaces a tab keypress produces
 -- -1 means it produces <shiftwidth> spaces
-vim.o.softtabstop = -1
+o.softtabstop = 2
 
 -- how many spaces an indentation level is
 -- automatically set by vimsleuth based on file in this config
-vim.o.shfitwidth = 2
+o.shfitwidth = 2
 
--- nvim-ufo
-vim.o.foldcolumn = "1"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+o.linebreak = true
+o.breakindent = true
+o.showbreak = " "
+o.swapfile = false
+o.cursorline = true

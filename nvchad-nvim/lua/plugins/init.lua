@@ -1,19 +1,6 @@
 return {
   { "rafamadriz/friendly-snippets", enabled = false },
   {
-    "kevinhwang91/nvim-ufo",
-    event = "BufEnter",
-    dependencies = "kevinhwang91/promise-async",
-    opts = {
-      provider_selector = function()
-        return { "treesitter", "indent" }
-      end,
-    },
-  },
-  {
-    "tpope/vim-sleuth",
-  },
-  {
     "lervag/vimtex",
     lazy = false,
     init = function()
