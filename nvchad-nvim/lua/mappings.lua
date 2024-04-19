@@ -1,19 +1,17 @@
-require("nvchad.mappings")
+require "nvchad.mappings"
+
+-- add yours here
 
 local map = vim.keymap.set
 
--- Nvim command line
-map("n", ";", ":", { desc = "Enter command mode" })
+map("n", ";", ":", { desc = "CMD enter command mode" })
+map("i", "jk", "<ESC>")
+
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Telescope
 map("n", "<leader>fn", function()
-  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config"), noremap = true })
+  require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config", noremap = true }
 end, { desc = "Search config files" })
+
 map("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "Search keymaps", noremap = true })
-
--- VimTeX
--- map("n", "<leader>ll", "<cmd>VimtexCompile<CR>")
--- map("n", "<leader>le", "<cmd>VimtexErrors<CR>")
--- map("n", "<leader>lv", "<cmd>VimtexView<CR>")
-
--- Navigation

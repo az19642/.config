@@ -1,5 +1,5 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
+local cmp = require "cmp"
+local luasnip = require "luasnip"
 
 dofile(vim.g.base46_cache .. "cmp")
 
@@ -16,7 +16,7 @@ local formatting_style = {
   fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
 
   format = function(_, item)
-    local icons = require("nvchad.icons.lspkind")
+    local icons = require "nvchad.icons.lspkind"
     local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
     if cmp_style == "atom" or cmp_style == "atom_colored" then
@@ -57,7 +57,7 @@ local options = {
       scrollbar = false,
     },
     documentation = {
-      border = border("CmpDocBorder"),
+      border = border "CmpDocBorder",
       winhighlight = "Normal:CmpDoc",
     },
   },
@@ -77,10 +77,10 @@ local options = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
 
-    ["<CR>"] = cmp.mapping.confirm({
+    ["<C-y>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    }),
+    },
 
     ["<Tab>"] = cmp.mapping(function(fallback)
       if require("luasnip").expand_or_jumpable() then
@@ -90,15 +90,15 @@ local options = {
       end
     end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif require("luasnip").jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+    -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif require("luasnip").jumpable(-1) then
+    --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
   },
   sources = {
     { name = "nvim_lsp" },
@@ -109,7 +109,7 @@ local options = {
 }
 
 if cmp_style ~= "atom" and cmp_style ~= "atom_colored" then
-  options.window.completion.border = border("CmpBorder")
+  options.window.completion.border = border "CmpBorder"
 end
 
 return options

@@ -1,18 +1,19 @@
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = " "
+vim.g.lua_snippets_path = "~/.config/nvim/luasnippets"
 
 -- bootstrap lazy and all plugins
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath })
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require("configs.lazy")
+local lazy_config = require "configs.lazy"
 
 -- load plugins
 require("lazy").setup({
@@ -22,7 +23,7 @@ require("lazy").setup({
     branch = "v2.5",
     import = "nvchad.plugins",
     config = function()
-      require("options")
+      require "options"
     end,
   },
 
@@ -33,8 +34,8 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-require("nvchad.autocmds")
+require "nvchad.autocmds"
 
 vim.schedule(function()
-  require("mappings")
+  require "mappings"
 end)

@@ -1,4 +1,0 @@
-local dummy = {
-}
-
-return dummy
