@@ -10,6 +10,24 @@ return {
       version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
       -- install jsregexp (optional!).
       build = "make install_jsregexp",
+      opts = { history = true, updateevents = "TextChanged,TextChangedI", enable_autosnippets = true },
+      config = function(_, opts)
+        require("luasnip").config.set_config(opts)
+
+        require("luasnip.loaders.from_lua").load()
+        require("luasnip.loaders.from_lua").lazy_load({ paths = vim.g.lua_snippets_path or "" })
+
+        vim.api.nvim_create_autocmd("InsertLeave", {
+          callback = function()
+            if
+              require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+              and not require("luasnip").session.jump_active
+            then
+              require("luasnip").unlink_current()
+            end
+          end,
+        })
+      end,
     },
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "onsails/lspkind.nvim", -- vs-code like pictograms
@@ -35,7 +53,6 @@ return {
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
 
         ["<C-y>"] = cmp.mapping.confirm({

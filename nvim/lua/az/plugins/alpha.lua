@@ -24,6 +24,7 @@ return {
       dashboard.button("SPC ff", "󰱼  > Find file", "<cmd>Telescope find_files<CR>"),
       dashboard.button("SPC fs", "  > Find string", "<cmd>Telescope live_grep<CR>"),
       dashboard.button("SPC wr", "󰁯  > Restore session for cwd", "<cmd>SessionRestore<CR>"),
+      dashboard.button("l", "󰁯  > Open Lazy plugin manager", "<cmd>Lazy<CR>"),
       dashboard.button("q", "  > Quit NeoVim", "<cmd>qa<CR>"),
     }
 

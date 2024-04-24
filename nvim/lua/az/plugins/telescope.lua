@@ -26,7 +26,13 @@ return {
     telescope.load_extension("fzf")
 
     local keymap = vim.keymap
+    local builtin = require("telescope.builtin")
 
+    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
+
+    keymap.set("n", "<leader>fn", function()
+      require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config"), noremap = true })
+    end, { desc = "Fuzzy find files in nvim/ directory" })
     keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
     keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
